@@ -1,0 +1,24 @@
+{
+    "projectName": "Bloggist",
+    "username": "a.depascua@altimetrik.com",
+    "id": "55c333d0-0566-11e9-ba79-a7a6076f6dbb",
+    "namespace": "",
+    "orgType": "developer",
+    "loginUrl": "https://login.salesforce.com/",
+    "instanceUrl": "https://bloggist1-dev-ed.my.salesforce.com",
+    "workspace": "C:\\Users\\adepascua\\Documents",
+    "subscription": [
+        "ApexClass",
+        "ApexComponent",
+        "ApexPage",
+        "ApexTrigger",
+        "ApprovalProcess",
+        "CustomObject",
+        "CustomTab",
+        "Flow",
+        "FlowDefinition",
+        "PermissionSet",
+        "Role",
+        "StaticResource"
+    ]
+}
