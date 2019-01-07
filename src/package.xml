@@ -5,6 +5,15 @@
         <name>ApprovalProcess</name>
     </types>
     <types>
+        <members>BloggistApp</members>
+        <members>BloggistEditTab</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>Bloggist</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
         <members>Post__c</members>
         <name>CustomObject</name>
     </types>
@@ -13,7 +22,19 @@
         <name>CustomTab</name>
     </types>
     <types>
-        <members>Post_Approval-4</members>
+        <members>unfiled$public/Approve_Post</members>
+        <members>unfiled$public/Post_Approved</members>
+        <members>unfiled$public/Post_Not_Approved</members>
+        <name>EmailTemplate</name>
+    </types>
+    <types>
+        <members>Bloggist</members>
+        <members>Bloggist_UtilityBar</members>
+        <members>Post_Record_Page</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>*</members>
         <name>Flow</name>
     </types>
     <types>
@@ -21,8 +42,13 @@
         <name>FlowDefinition</name>
     </types>
     <types>
-        <members>Manager</members>
-        <name>Role</name>
+        <members>Post__c-Authors</members>
+        <members>Post__c-Authors2</members>
+        <name>Layout</name>
     </types>
-    <version>36.0</version>
+    <types>
+        <members>*</members>
+        <name>StaticResource</name>
+    </types>
+    <version>44.0</version>
 </Package>

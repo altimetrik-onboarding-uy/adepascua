@@ -51,12 +51,20 @@
             <name>Post_Approved</name>
             <type>Alert</type>
         </action>
+        <action>
+            <name>Update_approval_checkbox</name>
+            <type>FieldUpdate</type>
+        </action>
     </finalApprovalActions>
     <finalApprovalRecordLock>true</finalApprovalRecordLock>
     <finalRejectionActions>
         <action>
             <name>Post_Rejected</name>
             <type>Alert</type>
+        </action>
+        <action>
+            <name>Update_approval_checkbox2</name>
+            <type>FieldUpdate</type>
         </action>
     </finalRejectionActions>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>

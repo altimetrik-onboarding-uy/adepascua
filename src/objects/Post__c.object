@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -42,7 +38,11 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override updated by Lightning App Builder during activation.</comment>
+        <content>Post_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -88,29 +88,35 @@
         <fullName>Status__c</fullName>
         <externalId>false</externalId>
         <label>Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Draft</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Published</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Under Review</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Ready</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>true</default>
+                    <label>Draft</label>
+                </value>
+                <value>
+                    <fullName>Under Review</fullName>
+                    <default>false</default>
+                    <label>Under Review</label>
+                </value>
+                <value>
+                    <fullName>Ready</fullName>
+                    <default>false</default>
+                    <label>Ready</label>
+                </value>
+                <value>
+                    <fullName>Published</fullName>
+                    <default>false</default>
+                    <label>Published</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Submit_for_Approval__c</fullName>
@@ -124,85 +130,105 @@
         <fullName>Tags__c</fullName>
         <externalId>false</externalId>
         <label>Tags</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Case Studies</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Collation</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Contrasting two options</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Debate</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Hypothetical</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Informational</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Inspirational</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Instructional</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Interviews</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Link Posts</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Lists</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Memes and Projects</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Predictions</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Profiles</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Rant</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Research</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Reviews</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Satirical</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
         <required>true</required>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Case Studies</fullName>
+                    <default>false</default>
+                    <label>Case Studies</label>
+                </value>
+                <value>
+                    <fullName>Collation</fullName>
+                    <default>false</default>
+                    <label>Collation</label>
+                </value>
+                <value>
+                    <fullName>Contrasting two options</fullName>
+                    <default>false</default>
+                    <label>Contrasting two options</label>
+                </value>
+                <value>
+                    <fullName>Debate</fullName>
+                    <default>false</default>
+                    <label>Debate</label>
+                </value>
+                <value>
+                    <fullName>Hypothetical</fullName>
+                    <default>false</default>
+                    <label>Hypothetical</label>
+                </value>
+                <value>
+                    <fullName>Informational</fullName>
+                    <default>false</default>
+                    <label>Informational</label>
+                </value>
+                <value>
+                    <fullName>Inspirational</fullName>
+                    <default>false</default>
+                    <label>Inspirational</label>
+                </value>
+                <value>
+                    <fullName>Instructional</fullName>
+                    <default>false</default>
+                    <label>Instructional</label>
+                </value>
+                <value>
+                    <fullName>Interviews</fullName>
+                    <default>false</default>
+                    <label>Interviews</label>
+                </value>
+                <value>
+                    <fullName>Link Posts</fullName>
+                    <default>false</default>
+                    <label>Link Posts</label>
+                </value>
+                <value>
+                    <fullName>Lists</fullName>
+                    <default>false</default>
+                    <label>Lists</label>
+                </value>
+                <value>
+                    <fullName>Memes and Projects</fullName>
+                    <default>false</default>
+                    <label>Memes and Projects</label>
+                </value>
+                <value>
+                    <fullName>Predictions</fullName>
+                    <default>false</default>
+                    <label>Predictions</label>
+                </value>
+                <value>
+                    <fullName>Profiles</fullName>
+                    <default>false</default>
+                    <label>Profiles</label>
+                </value>
+                <value>
+                    <fullName>Rant</fullName>
+                    <default>false</default>
+                    <label>Rant</label>
+                </value>
+                <value>
+                    <fullName>Research</fullName>
+                    <default>false</default>
+                    <label>Research</label>
+                </value>
+                <value>
+                    <fullName>Reviews</fullName>
+                    <default>false</default>
+                    <label>Reviews</label>
+                </value>
+                <value>
+                    <fullName>Satirical</fullName>
+                    <default>false</default>
+                    <label>Satirical</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
         <visibleLines>5</visibleLines>
     </fields>
     <gender>Masculine</gender>
@@ -211,6 +237,16 @@
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>AllFields</fullName>
+        <columns>NAME</columns>
+        <columns>Author__c</columns>
+        <columns>Published_Date__c</columns>
+        <columns>Status__c</columns>
+        <columns>Tags__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>AllFields</label>
     </listViews>
     <listViews>
         <fullName>Author</fullName>
@@ -329,4 +365,5 @@
     </recordTypes>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

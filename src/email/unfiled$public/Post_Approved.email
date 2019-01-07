@@ -1,0 +1,5 @@
+Congratulations {!Post__c.Author__c}!
+
+Your post  "{!Post__c.Name}" was approved!
+
+Regards.
