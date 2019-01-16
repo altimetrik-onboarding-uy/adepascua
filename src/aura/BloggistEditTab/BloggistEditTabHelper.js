@@ -28,28 +28,43 @@
 
     autoSave: function (component, event, helper) {
         var lastText = document.getElementById("output").innerHTML;
-        component.set("v.simpleRecord.Content__c", lastText);
-        component.find("recordData").saveRecord($A.getCallback(function (saveResult) {
-            if (saveResult.state === "SUCCESS") {
-                // record is saved successfully
-                var resultsToast = $A.get("e.force:showToast");
-                resultsToast.setParams({
-                    "title": "Saved",
-                    "message": "Saved!",
-                    "type": "success",
-                    "mode": "pester"
-                });
-                resultsToast.fire();
-            } else if (saveResult.state === "INCOMPLETE") {
-                // handle the incomplete state
-                console.log("User is offline, device doesn't support drafts.");
-            } else if (saveResult.state === "ERROR") {
-                // handle the error state
-                console.log('Problem saving post, error: ' + JSON.stringify(saveResult.error));
-            } else {
-                console.log('Unknown problem, state: ' + saveResult.state + ', error: ' + JSON.stringify(saveResult.error));
-            }
-        }))
+
+        if (component.get("v.simpleRecord.Status__c") === "Draft") {
+            component.set("v.simpleRecord.Content__c", lastText);
+            component.find("recordData").saveRecord($A.getCallback(function (saveResult) {
+                if (saveResult.state === "SUCCESS") {
+                    // record is saved successfully
+                    var resultsToast = $A.get("e.force:showToast");
+                    resultsToast.setParams({
+                        "title": "Saved",
+                        "message": "Saved!",
+                        "type": "success",
+                        "mode": "pester"
+                    });
+                    resultsToast.fire();
+                } else if (saveResult.state === "INCOMPLETE") {
+                    // handle the incomplete state
+                    console.log("User is offline, device doesn't support drafts.");
+                } else if (saveResult.state === "ERROR") {
+                    // handle the error state
+                    console.log('Problem saving post, error: ' + JSON.stringify(saveResult.error));
+                } else {
+                    console.log('Unknown problem, state: ' + saveResult.state + ', error: ' + JSON.stringify(saveResult.error));
+                }
+            }))
+        }
+        else {
+            var resultsToast = $A.get("e.force:showToast");
+            resultsToast.setParams({
+                "title": "Error",
+                "message": "Post must be in draft status to edit",
+                "type": "error",
+                "mode": "pester"
+            });
+            resultsToast.fire();
+        }
+
+
     },
     shorcutManager: function (component, e) {
 
@@ -96,6 +111,41 @@
                     text = "**insert_text_here**" + text;
                     component.set("v.updatedText", text);
                 } break;
+        }
+    },
+    submitForApproval: function (component, event, helper) {
+        if (component.get("v.simpleRecord.Status__c") === "Draft") {
+            component.set("v.simpleRecord.Status__c", "Under Review");
+            component.set("v.simpleRecord.Submit_for_Approval__c", true)
+            component.find("recordData").saveRecord(function (saveResult) {
+                if (saveResult.state === "SUCCESS" || saveResult.state === "DRAFT") {
+                    // record is saved successfully
+                    var resultsToast = $A.get("e.force:showToast");
+                    resultsToast.setParams({
+                        "title": "Saved",
+                        "message": "Post submitted for review."
+                    });
+                    resultsToast.fire();
+                } else if (saveResult.state === "INCOMPLETE") {
+                    // handle the incomplete state
+                    console.log("User is offline, device doesn't support drafts.");
+                } else if (saveResult.state === "ERROR") {
+                    // handle the error state
+                    console.log('Problem saving post, error: ' +
+                        JSON.stringify(saveResult.error));
+                } else {
+                    console.log('Unknown problem, state: ' + saveResult.state +
+                        ', error: ' + JSON.stringify(saveResult.error));
+                }
+            });
+        }
+        else {
+            var resultsToast = $A.get("e.force:showToast");
+            resultsToast.setParams({
+                "title": "Notice:",
+                "message": "This post has already submitted for review."
+            });
+            resultsToast.fire();
         }
     }
 })
