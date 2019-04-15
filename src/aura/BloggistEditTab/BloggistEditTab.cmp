@@ -1,0 +1,55 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable"
+    access="global">
+    <ltng:require scripts="{!$Resource.marked}" />
+    <aura:attribute name="record" type="Object" description="The record object to be displayed" />
+    <aura:attribute name="simpleRecord" type="Object" description="A simplified view record object to be displayed" />
+    <aura:attribute name="recordError" type="String" description="An error message bound to force:recordData" />
+    <aura:attribute name="post" type="Post__c" />
+    <aura:attribute name="postId" type="Id" />
+    <aura:attribute name="inputText" type="String"></aura:attribute>
+    <aura:attribute name="updatedText" type="String"></aura:attribute>
+    <aura:attribute name="isCtrlHold" type="Boolean" default="false"></aura:attribute>
+    <aura:attribute name="isShiftHold" type="Boolean" default="false"></aura:attribute>
+    <aura:handler name="change" value="{!v.inputText}" action="{!c.handleTextChanged}" />
+    <force:recordData aura:id="recordData" layoutType="FULL" recordId="{!v.recordId}" targetError="{!v.recordError}"
+        targetRecord="{!v.record}" targetFields="{!v.simpleRecord}" mode="EDIT" recordUpdated="{!c.recordUpdated}" />
+
+    <lightning:recordViewForm aura:id="viewForm" recordId="{!v.post}" objectApiName="Post__c">
+        <!-- CARD 1-->
+        <lightning:card iconName="standard:goals" title="Status:">
+            <!-- ARTICLE -->
+            <article class="slds-card">
+                <!-- PATH (with pointer events disabled)-->
+                <div style="pointer-events:none;">
+                    <lightning:picklistPath aura:id="picklistPath" recordId="{!v.recordId}" variant="non-linear"
+                        picklistFieldApiName="Status__c">
+                    </lightning:picklistPath>
+                </div>
+                <!-- APPROVAL BUTTON -->
+                <div class="slds-align_absolute-center" style="height: 5rem;" draggable="false">
+                    <lightning:button label="Submit for Approval" title="Base action" onclick="{!c.submitForApproval }" />
+                </div>
+            </article>
+            <!-- ARTICLE END-->
+            <lightning:card iconName="standard:account" title="MARKDOWN EDITOR">
+                <div>
+                    <lightning:card title="Input:" class="myTextInputClass">
+                        <!-- Post input TEST-->
+                        <div>
+                            <lightning:textarea aura:id="input" onchange="{!c.textUpdated}" value="{!v.updatedText}"
+                                placeholder="Type some markdown text here" onfocus="{!c.markdownInputOnFocus}" />
+                        </div>
+                        <!-- Post input TEST END-->
+                    </lightning:card>
+                    <!-- Post output -->
+                    <lightning:card title="Output:">
+                        <div aura:id="outputContainer" class="slds-box slds-text-longform">
+                            <div id="output"></div>
+                        </div>
+                    </lightning:card>
+                </div>
+            </lightning:card>
+        </lightning:card>
+        <!-- CARD 1 END-->
+    </lightning:recordViewForm>
+</aura:component>

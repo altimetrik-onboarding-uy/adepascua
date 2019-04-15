@@ -1,0 +1,8 @@
+{!User.Name},
+
+{!Post__c.Author__c} has submitted a new post for approval.
+
+Post: {!Post__c.Name} 
+
+Thank you.
+{!r\n\}
